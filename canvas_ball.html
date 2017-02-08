@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>小球滚动的效果</title>
+</head>
+<body>
+<canvas id="canvas" width="1280" height="768" style="border: 1px solid #000;display:block;margin: 50px auto;">
+  当前浏览器不支持canvas，请更换浏览器重试
+</canvas>
+<script>
+  var ball = {x: 900, y: 100, r: 8, g: 2, vx: -4, vy: 0, color: "red"}
+  window.onload = function () {
+    var canvas = document.getElementById("canvas")
+    if (canvas.getContext("2d")) {
+      var context = canvas.getContext("2d")
+      setInterval(function () {
+        render(context)
+        update()
+      }, 50)
+    }
+  }
+  function update() {
+    ball.x += ball.vx;
+    ball.y += ball.vy;
+    ball.vy += ball.g;
+    if (ball.y > (768 - ball.r)) {
+      ball.y = 768 - ball.r;
+      ball.vy = -ball.vy;
+    }
+    if (ball.y < 100) {
+      ball.y = 100;
+      ball.vy = -ball.vy;
+    }
+    if (ball.x <=10) {
+      ball.x = 10;
+      ball.vx = -ball.vx;
+    }
+    if (ball.x > 1270) {
+      ball.x = 1270;
+      ball.vx = -ball.vx;
+    }
+  }
+  function render(ctx) {
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
+    ctx.beginPath()
+    ctx.arc(ball.x, ball.y, ball.r, 0, 2 * Math.PI)
+    ctx.closePath()
+    ctx.fillStyle = ball.color
+    ctx.fill()
+  }
+</script>
+</body>
+</html>

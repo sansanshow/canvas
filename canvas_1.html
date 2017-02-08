@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Canvas学习案例1</title>
+</head>
+<body>
+<canvas id="canvas" width="1024" height="768" style="border: 1px solid #000;display:block;margin: 50px auto;">
+  当前浏览器不支持canvas，请更换浏览器重试
+</canvas>
+<script>
+  /*初始化canvas*/
+  window.onload = function () {
+    var canvas = document.getElementById("canvas")
+
+    //判断用户浏览器是否支持
+    if (canvas.getContext("2d")) { // 支持
+      //使用context进行绘制
+      var context = canvas.getContext("2d")
+      canvas.width = 1280;
+      // 绘制一个三角形
+      context.beginPath()//状态开始
+      context.moveTo(100,100)
+      context.lineTo(700,700)
+      context.lineTo(100,700)
+      context.lineTo(100,100)
+      context.closePath()//状态结束
+
+      //边框样式
+      context.lineWidth = 3
+      context.strokeStyle = "red"
+      context.stroke()
+
+      //填充
+      context.fillStyle="rgb(2,30,80)"
+      context.fill()
+
+      context.beginPath()//状态开始
+      context.moveTo(200,100)
+      context.lineTo(800,700)
+      context.lineTo(1200,700)
+//      context.closePath()//状态结束
+
+      //边框样式
+      context.lineWidth = 10
+      context.strokeStyle = "#ff0000"
+      context.stroke()
+      for(var i = 0;i<10;i++){
+        context.beginPath()
+        context.arc(100+120*i,80,50,0,2*Math.PI*(i+1)/10)
+        context.closePath()
+        context.lineWidth = 2
+        context.strokeStyle = "black"
+        context.stroke()
+      }
+
+      for(var i = 0;i<10;i++){
+        context.beginPath()
+        context.arc(100+120*i,200,50,0,2*Math.PI*(i+1)/10)
+        context.lineWidth = 2
+        context.strokeStyle = "red"
+        context.stroke()
+      }
+      for(var i = 0;i<10;i++){
+        context.beginPath()
+        context.arc(100+120*i,320,50,0,2*Math.PI*(i+1)/10,true)
+        context.closePath()
+        context.lineWidth = 2
+        context.strokeStyle = "red"
+        context.stroke()
+      }
+      for(var i = 0;i<10;i++){
+        context.beginPath()
+        context.arc(100+120*i,440,50,0,2*Math.PI*(i+1)/10,true)
+        context.lineWidth = 2
+        context.strokeStyle = "red"
+        context.stroke()
+      }
+    } else { // 不支持
+      alert("当前浏览器不支持canvas，请更换浏览器重试")
+    }
+  }
+</script>
+</body>
+</html>
