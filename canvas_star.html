@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绘制星空</title>
+</head>
+<body>
+<canvas id="canvas" width="1024" height="768" style="border: 1px solid #000;display:block;margin: 50px auto;">
+    当前浏览器不支持canvas，请更换浏览器重试
+</canvas>
+<script>
+    window.onload = function () {
+        var canvas = document.getElementById("canvas");
+        if (canvas.getContext('2d')) {
+            var context = canvas.getContext('2d')
+            context.fillStyle = "black"
+            context.fillRect(0, 0, canvas.width, canvas.height)
+            context.fillStyle = "black"
+            for (var i = 0; i < 300; i++) {
+                var r = Math.random() * 10 + 10;
+                var x = Math.random() * canvas.width;
+                var y = Math.random() * canvas.height;
+                var a = Math.random() * 360;
+                drawStar(context, r / 2, r, x, y, a);
+            }
+        } else {
+            alert("当前浏览器不支持canvas，请更换浏览器重试")
+        }
+    }
+    function drawStar(cxt, innerR, outerR, x, y, rot) {//r:内圆半径；R:外圆半径；x,y:偏移量；a:旋转角度
+        cxt.beginPath()
+        for (var i = 0; i < 5; i++) {
+            cxt.lineTo(Math.cos((18 + i * 72 - rot) / 180 * Math.PI) * outerR + x,
+                    -Math.sin((18 + i * 72 - rot) / 180 * Math.PI) * outerR + y)
+            cxt.lineTo(Math.cos((54 + i * 72 - rot) / 180 * Math.PI) * innerR + x,
+                    -Math.sin((54 + i * 72 - rot) / 180 * Math.PI) * innerR + y)
+        }
+        cxt.closePath()
+        cxt.fillStyle = "#fb3";
+        cxt.strokeStyle = "#fb5";
+        cxt.lineWidth = 3;
+        cxt.lineJoin = "round";
+        cxt.fill();
+        cxt.stroke()
+    }
+</script>
+</body>
+</html>

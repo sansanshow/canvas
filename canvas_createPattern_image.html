@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用canvas,图片,video</title>
+</head>
+<body>
+<canvas id="canvas" width="1200" height="800" style="border: 1px solid #000;display:block;margin: 50px auto;">
+    当前浏览器不支持canvas，请更换浏览器重试
+</canvas>
+<script>
+    window.onload = function () {
+        var canvas = document.getElementById("canvas");
+        if (canvas.getContext('2d')) {
+            var context = canvas.getContext('2d')
+            var backImage = new Image()
+            backImage.src = "well.png"
+            backImage.onload = function () {
+                var pattern = context.createPattern(backImage,"repeat")
+                context.fillStyle = pattern
+                context.fillRect(0,0,canvas.width,canvas.height)
+            }
+
+        } else {
+            alert("当前浏览器不支持canvas，请更换浏览器重试")
+        }
+    }
+</script>
+</body>
+</html>

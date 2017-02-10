@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas字体渲染</title>
+</head>
+<body>
+<canvas id="canvas" width="800" height="800" style="border: 1px solid #000;display:block;margin: 50px auto;">
+    当前浏览器不支持canvas，请更换浏览器重试
+</canvas>
+<script>
+    window.onload = function () {
+        var canvas = document.getElementById("canvas");
+        if (canvas.getContext('2d')) {
+            var context = canvas.getContext('2d')
+            // 颜色填充
+            context.fillStyle = "red"
+            context.font = "bold 40px Arial"
+            context.fillText("canvas字体渲染canvas字体渲染canvas字体渲染",50,50,300)
+
+            // 图片填充
+            var backImage = new Image()
+            backImage.src = "well.png"
+            backImage.onload = function () {
+                var pattern = context.createPattern(backImage,"repeat")
+                context.fillStyle = pattern
+                context.fillText("canvas字体渲染canvas字体渲染canvas字体渲染",50,100)
+            }
+        } else {
+            alert("当前浏览器不支持canvas，请更换浏览器重试")
+        }
+    }
+</script>
+</body>
+</html>

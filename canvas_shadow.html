@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas阴影</title>
+</head>
+<body>
+<canvas id="canvas" width="800" height="800" style="border: 1px solid #000;display:block;margin: 50px auto;">
+    当前浏览器不支持canvas，请更换浏览器重试
+</canvas>
+<script>
+    window.onload = function () {
+        var canvas = document.getElementById("canvas");
+        canvas.width = 800
+        canvas.height = 800
+        if (canvas.getContext('2d')) {
+            var context = canvas.getContext('2d')
+            context.shadowColor="gray"
+            context.shadowOffsetX = -20
+            context.shadowOffsetY = -20
+            context.shadowBlur = 5
+            context.fillStyle = 'green'
+            context.fillRect(100,100,300,300)
+        } else {
+            alert("当前浏览器不支持canvas，请更换浏览器重试")
+        }
+    }
+</script>
+</body>
+</html>

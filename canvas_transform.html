@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas的图形转换</title>
+</head>
+<body>
+<canvas id="canvas" width="800" height="800" style="border: 1px solid #000;display:block;margin: 50px auto;">
+    当前浏览器不支持canvas，请更换浏览器重试
+</canvas>
+<script>
+    window.onload = function () {
+        var canvas = document.getElementById("canvas");
+        if (canvas.getContext('2d')) {
+            var context = canvas.getContext('2d')
+            context.save()
+            context.translate(100, 100)
+            context.fillStyle = "green"
+            context.fillRect(0, 0, 400, 400)
+            context.restore()
+            context.translate(300, 300)
+            context.fillStyle = "red"
+            context.fillRect(0, 0, 400, 400)
+
+        } else {
+            alert("当前浏览器不支持canvas，请更换浏览器重试")
+        }
+    }
+</script>
+</body>
+</html>
